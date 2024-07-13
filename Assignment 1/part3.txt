@@ -1,0 +1,22 @@
+COV1 - 
+     Before making any changes after looking at lcov, lines covered -88, 50.6% coverage
+     In giftcardreader I saw record type 1 is not being covered, so I made cov1.gft to cover record type 1
+     after cov1.gft lines covered 99, 56.6% coverage
+
+COV2 - 
+     In animate function a lot of cases were not working so I changed genamin.py to add more cases.
+     after cov2.gft lines covered 113, 64.6% coverage
+
+Running afl for 3 hrs 13 hangs and 6 crashes
+code coverage 76.6% lines 134
+
+Fuzzer1 - 
+      One of the crashes was causing *** stack smashing detected ***: terminated Aborted. This is crashes id 000000
+      after going through the program I realized that the issue is in animate funciton case 4. This is the same issue i
+     discovered in crash2.gft but with a different case. Here too there is no check for arg1 and 2 pointers.
+     I added this check  if(arg1<16 && arg1>=0 && arg2<16 && arg2>=0) so that the value stays in range. 
+
+Fuzzer 2 - 
+      Another crash was causing *** stack smashing detected ***: terminated Aborted. This is crashes id 000009
+      after going through the program I realized that the issue is in animate funciton case 5 this time. 
+       I added this check  if(arg1<16 && arg1>=0 && arg2<16 && arg2>=0) so that the value stays in range. 

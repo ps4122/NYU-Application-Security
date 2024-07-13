@@ -1,0 +1,16 @@
+Crash 1 - In gengift.py I changed the datalen to -1 and after running it gave me a segmentation fault 
+          In giftcardreader.c after line 195, there was nothing checking the parameter for negative number
+          Fix  - To add a check for negative numbers 
+           
+
+
+Crash 2 - We store the value 127 into the regs(args) which causes a segmentation fault as the reg only has 16 bytes, and will place 
+          in the out of bounds in case x001. 
+          Fix - I add a check in case 001 for args checking if the value is between 0-15. thiscan also be an issue with the other 
+          operations with registers. I have to figue out what conditions to add for the checks. 
+
+
+
+Hang  - It causes an infinite loop in the animate, as you can pass a negative value in 0x09 which will create 
+        an infinte loop as pc will never be greater than pc +256   
+        Fix - This can be solved with using unsigned char in case 0x09  or putting an if statement of if(pc > (pc+256)) break;
